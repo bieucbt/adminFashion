@@ -2,7 +2,7 @@ import React from 'react'
 
 const Products = () => {
   return (
-    <div className=''>
+    <div className='p-4'>
       <div className='grid grid-cols-6 place-items-center mb-4'>
         <div>STT</div>
         <div>Hình ảnh</div>

@@ -6,6 +6,7 @@ import Products from './pages/Products';
 import Users from './pages/Users';
 import Sidebar from './components/Sidebar';
 import CreateProduct from './pages/CreateProduct';
+import EditAccount from './pages/EditAccount';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" element={<Products />} />
               <Route path="/users" element={<Users />} />
               <Route path="/create" element={<CreateProduct />} />
+              <Route path="/editAcount" element={<EditAccount />} />
             </Routes>
           </div>
         </div>

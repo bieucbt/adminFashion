@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useRef } from 'react'
 
-const Header = ({setHeaderHeight}) => {
+const Header = ({headerHeight, setHeaderHeight}) => {
   const headerRef = useRef(null)
 
   useEffect(() => {
     setHeaderHeight(headerRef.current.offsetHeight)
-  }, [])
+  }, [headerHeight])
   return (
     <header ref={headerRef} className='fixed top-0 left-0 right-0 border-b-gray-200 border-[2px] bg-white
     z-50 '>

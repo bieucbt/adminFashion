@@ -14,3 +14,15 @@
 .brand{
   @apply lg:text-[30px] font-semibold md:text-[26px] maxMd:text-[20px] cursor-pointer
 }
+
+.hoverBgWhite {
+  @apply hover:text-black hover:bg-white duration-500 ease-linear;
+}
+
+.inputForm{
+  @apply px-4 py-[10px] text-[14px] font-normal outline-none border-gray-300 hover:border-black duration-500 ease-linear rounded-sm border w-full
+}
+
+.btnForm {
+  @apply mt-10 rounded-[4px] py-3 hoverBgWhite bg-black text-white cursor-pointer text-center border border-black font-medium;
+}
