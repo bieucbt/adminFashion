@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useImmer } from 'use-immer';
-import { BASE_URL } from '../config/constants';
+import { BASE_URL_USER } from '../config/constants';
 
 const EditAccount = () => {
   
@@ -17,7 +17,7 @@ const EditAccount = () => {
   
   useEffect(() => {
     const fetchData = async() => {
-      const res = await axios.get(BASE_URL+userId)
+      const res = await axios.get(BASE_URL_USER+userId) 
       setEmail(res.data.email)
       res.data.isAdmin ? setIsAdmin('admin') : setIsAdmin('client')
     }

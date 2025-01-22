@@ -3,7 +3,6 @@ import { memo } from 'react'
 import { FaFileAlt } from "react-icons/fa";
 
 const InputImgList = ({imgProduct, setImgProduct}) => {
-  console.log(imgProduct)
   return (
     <div>
       <label htmlFor="file">
