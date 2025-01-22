@@ -3,6 +3,7 @@ import { useImmer } from "use-immer"
 import axios from 'axios'
 import InputImgList from "../components/InputImgList";
 import TagList from "../components/TagList";
+import { BASE_URL_PRODUCT } from "../config/constants";
 
 const CreateProduct = () => {
   const [data, setData] = useImmer({
@@ -38,7 +39,7 @@ const CreateProduct = () => {
    
   
     try{
-      const res = await axios.post('http://localhost:3000/product/', formData)
+      const res = await axios.post(BASE_URL_PRODUCT, formData)
       console.log(res)
     }catch(err){
       console.log(err)
