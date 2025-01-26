@@ -4,6 +4,7 @@ import axios from 'axios'
 import InputImgList from "../components/InputImgList";
 import TagList from "../components/TagList";
 import { BASE_URL_PRODUCT } from "../config/constants";
+import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const [data, setData] = useImmer({
@@ -40,7 +41,9 @@ const CreateProduct = () => {
 
     try {
       const res = await axios.post(BASE_URL_PRODUCT, formData)
-      console.log(res)
+      if (res.statusText == "OK") {
+        toast.success('thêm thành công')
+      }
     } catch (err) {
       console.log(err)
     }

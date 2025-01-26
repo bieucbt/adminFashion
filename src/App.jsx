@@ -7,17 +7,20 @@ import Users from './pages/Users';
 import Sidebar from './components/Sidebar';
 import CreateProduct from './pages/CreateProduct';
 import EditAccount from './pages/EditAccount';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  
+
   const [headerHeight, setHeaderHeight] = useState(0)
 
   return (
     <div className='h-screen'>
+      <ToastContainer />
       <BrowserRouter>
-        <Header {...{headerHeight, setHeaderHeight}} />
+        <Header {...{ headerHeight, setHeaderHeight }} />
         <div className='flex relative h-screen'
-        style={{marginTop: headerHeight+'px'}}>
+          style={{ marginTop: headerHeight + 'px' }}>
           <Sidebar />
           <div className='flex-[3]'>
             <Routes>
