@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import {BASE_URL_PRODUCT } from '../config/constants'
+import { BASE_URL_PRODUCT, CLOUDINARY_URL } from '../config/constants'
 
 const Products = () => {
 
@@ -9,8 +9,8 @@ const Products = () => {
   useEffect(() => {
     const fetchProduct = () => {
       axios.get(BASE_URL_PRODUCT)
-      .then(data => setProduct(data.data))
-      .catch(err => console.log(err)) 
+        .then(data => setProduct(data.data))
+        .catch(err => console.log(err))
     }
 
     fetchProduct()
@@ -27,20 +27,20 @@ const Products = () => {
       </div>
       {
         products.length > 0 ?
-        products.map((product, i) => (
-        <div key={i}
-        className='grid grid-cols-6 place-items-center mb-[6px]'>
-          <div>{i}</div>
-          <div><img src={BASE_URL_PRODUCT+'images/'+product.img} alt="" /></div>
-          <div>{product.name}</div>
-          <div>{product.price}</div>
-          <div>{product.description}</div>
-          <div>
-            <div>sửa</div>
-            <div>xóa</div>
-          </div>
-        </div>)) :
-        <div>không có sản phẩm trong cở sở dữ liệu</div>
+          products.map((product, i) => (
+            <div key={i}
+              className='grid grid-cols-6 place-items-center mb-[6px]'>
+              <div>{i}</div>
+              <div><img src={CLOUDINARY_URL + product.img} alt="img product" /></div>
+              <div>{product.name}</div>
+              <div>{product.price}</div>
+              <div>{product.description}</div>
+              <div>
+                <div>sửa</div>
+                <div>xóa</div>
+              </div>
+            </div>)) :
+          <div>không có sản phẩm trong cở sở dữ liệu</div>
       }
     </div>
   )
