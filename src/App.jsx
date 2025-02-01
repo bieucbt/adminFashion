@@ -9,29 +9,31 @@ import CreateProduct from './pages/CreateProduct';
 import EditAccount from './pages/EditAccount';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ToastProvider from './context/ToastContext';
 
 function App() {
 
   const [headerHeight, setHeaderHeight] = useState(0)
-
   return (
     <div className='h-screen'>
       <ToastContainer />
-      <BrowserRouter>
-        <Header {...{ headerHeight, setHeaderHeight }} />
-        <div className='flex relative h-screen'
-          style={{ marginTop: headerHeight + 'px' }}>
-          <Sidebar />
-          <div className='flex-[3]'>
-            <Routes>
-              <Route path="/" element={<Products />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/create" element={<CreateProduct />} />
-              <Route path="/editAcount" element={<EditAccount />} />
-            </Routes>
+      <ToastProvider>
+        <BrowserRouter>
+          <Header {...{ headerHeight, setHeaderHeight }} />
+          <div className='flex relative h-screen'
+            style={{ marginTop: headerHeight + 'px' }}>
+            <Sidebar />
+            <div className='flex-[3]'>
+              <Routes>
+                <Route path="/" element={<Products />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/create" element={<CreateProduct />} />
+                <Route path="/editAcount" element={<EditAccount />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </ToastProvider>
     </div>
   )
 }

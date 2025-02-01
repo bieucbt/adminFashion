@@ -1,7 +1,7 @@
 
 
-const BASE_URL_USER = 'https://servertest-chi.vercel.app/user/';
-const BASE_URL_PRODUCT = 'https://servertest-chi.vercel.app/product/';
+const BASE_URL_USER = 'https://servertest-mmh4.onrender.com/user/';
+const BASE_URL_PRODUCT = 'https://servertest-mmh4.onrender.com/product/';
 
 
 // const BASE_URL_USER = 'http://localhost:3000/user/';

@@ -5,6 +5,7 @@ import InputImgList from "../components/InputImgList";
 import TagList from "../components/TagList";
 import { BASE_URL_PRODUCT } from "../config/constants";
 import { toast } from "react-toastify";
+import { useToastify } from "../hook/useToastify";
 
 const CreateProduct = () => {
   const [data, setData] = useImmer({
@@ -20,6 +21,8 @@ const CreateProduct = () => {
   const [size, setSize] = useState('')
   const [listColor, setListColor] = useImmer([])
   const [color, setColor] = useState('')
+
+
 
   const handelSubmit = async () => {
     const { nameProduct,
@@ -37,16 +40,30 @@ const CreateProduct = () => {
     // for(const value of formData.entries()){
     //   console.log(value)
     // }
+    const { toastId } = useToastify()
 
-
-    try {
-      const res = await axios.post(BASE_URL_PRODUCT, formData)
-      if (res.statusText == "OK") {
-        toast.success('thêm thành công')
-      }
-    } catch (err) {
-      console.log(err)
-    }
+    const res = await axios.post('http://localhost:3000/product/', formData)
+    console.log(res)
+    // try {
+    //   const res = await axios.post('http://localhost:3000/product/', formData)
+    //   console.log(res)
+    //   if (res.status >= 200 && res.status < 300) {
+    //     toast.update(toastId, {
+    //       render: 'Tạo thành công!',
+    //       type: 'success',
+    //       isLoading: false,
+    //       autoClose: 2000
+    //     })
+    //   }
+    // } catch (err) {
+    //   console.log(err)
+    //   toast.update(toastId, {
+    //     render: err.message,
+    //     type: 'error',
+    //     isLoading: false,
+    //     autoClose: 2000
+    //   })
+    // }
 
 
   }
