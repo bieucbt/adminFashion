@@ -1,24 +1,22 @@
-import { useEffect, useRef, useState } from 'react'
-import './App.css'
-import Header from './components/Header'
+import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import Header from './components/Header'
 import Products from './pages/Products';
 import Users from './pages/Users';
 import Sidebar from './components/Sidebar';
 import CreateProduct from './pages/CreateProduct';
 import EditAccount from './pages/EditAccount';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ToastProvider from './context/ToastContext';
+import ToastPovider from './context/ToastPovider';
+import './App.css'
 
 function App() {
 
   const [headerHeight, setHeaderHeight] = useState(0)
   return (
     <div className='h-screen'>
-      <ToastContainer />
-      <ToastProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <ToastPovider>
           <Header {...{ headerHeight, setHeaderHeight }} />
           <div className='flex relative h-screen'
             style={{ marginTop: headerHeight + 'px' }}>
@@ -32,9 +30,9 @@ function App() {
               </Routes>
             </div>
           </div>
-        </BrowserRouter>
-      </ToastProvider>
-    </div>
+        </ToastPovider>
+      </BrowserRouter>
+    </div >
   )
 }
 

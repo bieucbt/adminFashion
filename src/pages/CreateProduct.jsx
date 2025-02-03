@@ -4,8 +4,7 @@ import axios from 'axios'
 import InputImgList from "../components/InputImgList";
 import TagList from "../components/TagList";
 import { BASE_URL_PRODUCT } from "../config/constants";
-import { toast } from "react-toastify";
-import { useToastify } from "../hook/useToastify";
+import useToastContext from "../hook/useToastContext";
 
 const CreateProduct = () => {
   const [data, setData] = useImmer({
@@ -21,8 +20,7 @@ const CreateProduct = () => {
   const [size, setSize] = useState('')
   const [listColor, setListColor] = useImmer([])
   const [color, setColor] = useState('')
-
-
+  const { showToast } = useToastContext()
 
   const handelSubmit = async () => {
     const { nameProduct,
@@ -32,38 +30,35 @@ const CreateProduct = () => {
       category,
       productType } = data
     const dataForm = { img: imgProduct, color: JSON.stringify(listColor), size: JSON.stringify(listSize), count, price, description, category, productType, name: nameProduct }
+
     const formData = new FormData()
+
     for (const key of Object.entries(dataForm)) {
       formData.append(key[0], key[1])
     }
 
-    // for(const value of formData.entries()){
-    //   console.log(value)
-    // }
-    const { toastId } = useToastify()
-
-    const res = await axios.post('http://localhost:3000/product/', formData)
-    console.log(res)
-    // try {
-    //   const res = await axios.post('http://localhost:3000/product/', formData)
-    //   console.log(res)
-    //   if (res.status >= 200 && res.status < 300) {
-    //     toast.update(toastId, {
-    //       render: 'Tạo thành công!',
-    //       type: 'success',
-    //       isLoading: false,
-    //       autoClose: 2000
-    //     })
-    //   }
-    // } catch (err) {
-    //   console.log(err)
-    //   toast.update(toastId, {
-    //     render: err.message,
-    //     type: 'error',
-    //     isLoading: false,
-    //     autoClose: 2000
-    //   })
-    // }
+    try {
+      showToast('loading', 'đang xử lý xin vui lòng đợi!')
+      const res = await axios.post(BASE_URL_PRODUCT, formData)
+      if (res.status >= 200 && res.status < 300) {
+        console.log({ img: imgProduct, color: JSON.stringify(listColor), size: JSON.stringify(listSize), count, price, description, category, productType, name: nameProduct }
+        )
+        setImgProduct('')
+        setListColor([])
+        setListSize([])
+        setData(draft => {
+          draft.nameProduct = '';
+          draft.price = 0;
+          draft.count = 0;
+          draft.description = '';
+          draft.category = 'Đồ Nam';
+          draft.productType = 'Áo khoác';
+        })
+        showToast('success', 'Tạo thành công!')
+      }
+    } catch (err) {
+      showToast('error', err.message)
+    }
 
 
   }

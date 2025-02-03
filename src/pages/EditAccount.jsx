@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BASE_URL_USER } from '../config/constants';
-import { toast } from 'react-toastify'
+import useToastContext from '../hook/useToastContext';
 
 const EditAccount = () => {
 
@@ -13,7 +13,7 @@ const EditAccount = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const userId = location.state
-
+  const { showToast } = useToastContext()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,11 +31,11 @@ const EditAccount = () => {
       const res = await axios.patch(BASE_URL_USER + 'editUser/' + userId, data)
 
       if (res.status >= 200 && res.status < 300) {
-        toast.success('thay đổi thành công')
+        showToast('success', 'thay đổi thành công')
         navigate('/users')
       }
     } catch (err) {
-      toast.error(err)
+      showToast('error', err)
     }
   }
 
