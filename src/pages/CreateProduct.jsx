@@ -48,8 +48,8 @@ const CreateProduct = () => {
         setListSize([])
         setData(draft => {
           draft.nameProduct = '';
-          draft.price = 0;
-          draft.count = 0;
+          draft.price = '';
+          draft.count = '';
           draft.description = '';
           draft.category = 'Đồ Nam';
           draft.productType = 'Áo khoác';
@@ -75,11 +75,21 @@ const CreateProduct = () => {
         <div className="mt-3">
           <label htmlFor="price">Giá sản phẩm</label>
           <input type="number" id='price' className='inputForm' value={data.price}
+            onKeyDown={e => {
+              if (e.target.value.toString()[0] == 0)
+                e.target.value = ''
+
+            }}
             onChange={e => setData(draft => { draft.price = e.target.value })} />
         </div>
         <div className="mt-3">
           <label htmlFor="count">Số Lượng</label>
           <input type="number" id='count' className='inputForm' value={data.count}
+            onKeyDown={e => {
+              if (e.target.value.toString()[0] == 0)
+                e.target.value = ''
+
+            }}
             onChange={e => setData(draft => { draft.count = e.target.value })} />
         </div>
         <TagList label='kích thước' text={size} setText={setSize} listText={listSize} setListText={setListSize} />
