@@ -10,7 +10,7 @@ const ToastProvider = ({ children }) => {
 
     const showToast = (type, message) => {
         if (toastIdRef.current && toast.isActive(toastIdRef.current)) {
-            toast.update(toastIdRef.current, { render: message, type, isLoading: false, autoClose: 1500 })
+            toast.update(toastIdRef.current, { render: message, type, isLoading: false, autoClose: 2000 })
         } else {
             toastIdRef.current = toast[type](message)
         }

@@ -3,7 +3,7 @@ import { useImmer } from "use-immer"
 import axios from 'axios'
 import InputImgList from "../components/InputImgList";
 import TagList from "../components/TagList";
-import { BASE_URL_PRODUCT } from "../config/constants";
+import { PRODUCT_URL } from "../config/constants";
 import useToastContext from "../hook/useToastContext";
 
 const CreateProduct = () => {
@@ -39,10 +39,8 @@ const CreateProduct = () => {
 
     try {
       showToast('loading', 'đang xử lý xin vui lòng đợi!')
-      const res = await axios.post(BASE_URL_PRODUCT, formData)
+      const res = await axios.post(PRODUCT_URL, formData)
       if (res.status >= 200 && res.status < 300) {
-        console.log({ img: imgProduct, color: JSON.stringify(listColor), size: JSON.stringify(listSize), count, price, description, category, productType, name: nameProduct }
-        )
         setImgProduct('')
         setListColor([])
         setListSize([])
@@ -65,6 +63,7 @@ const CreateProduct = () => {
 
   return (
     <div className="p-4">
+      <h2 className='text-center text-[30px]'>Thêm sản phẩm</h2>
       <form encType="multipart/form-data">
         <InputImgList {...{ imgProduct, setImgProduct }} />
         <div className="mt-3">

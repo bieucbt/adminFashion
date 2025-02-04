@@ -9,6 +9,7 @@ import CreateProduct from './pages/CreateProduct';
 import EditAccount from './pages/EditAccount';
 import ToastPovider from './context/ToastPovider';
 import './App.css'
+import EditProduct from './pages/EditProduct';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/users" element={<Users />} />
                 <Route path="/create" element={<CreateProduct />} />
                 <Route path="/editAcount" element={<EditAccount />} />
+                <Route path="/editProduct" element={<EditProduct />} />
               </Routes>
             </div>
           </div>
