@@ -51,7 +51,7 @@ const Products = () => {
               <div>{product.name}</div>
               <div>{product.price}</div>
               <div>{product.description}</div>
-              <div className='flex items-center gap-3'>
+              <div className='flex items-center gap-3 '>
                 <div className='cursor-pointer' onClick={() => navigate('/editProduct', { state: product._id })}>sửa</div>
                 <div className='cursor-pointer' onClick={() => handleDeleteProduct(product._id)}>xóa</div>
               </div>
