@@ -35,7 +35,7 @@ const EditAccount = () => {
         navigate('/users')
       }
     } catch (err) {
-      showToast('error', err)
+      showToast('error', 'Đang bị lỗi không thể sửa được thông tin')
     }
   }
 
