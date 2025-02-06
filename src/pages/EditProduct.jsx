@@ -4,7 +4,7 @@ import InputImgList from '../components/InputImgList'
 import { useImmer } from 'use-immer'
 import useToastContext from '../hook/useToastContext'
 import { useLocation } from 'react-router-dom'
-import { CLOUDINARY_URL, PRODUCT_URL } from '../config/constants'
+import { PRODUCT_URL } from '../config/constants'
 import axios from 'axios'
 
 const EditProduct = () => {
@@ -23,7 +23,6 @@ const EditProduct = () => {
     const [color, setColor] = useState('')
     const { showToast } = useToastContext()
     const productId = useLocation().state
-    const [isProductImg, setIsProductImg] = useState(true)
 
     useEffect(() => {
         axios.get(PRODUCT_URL + productId)
@@ -40,7 +39,7 @@ const EditProduct = () => {
                 })
                 setListColor(JSON.parse(dataProduct.color))
                 setListSize(JSON.parse(dataProduct.size))
-                setImgProduct(CLOUDINARY_URL + dataProduct.img)
+                setImgProduct(dataProduct.img)
             })
             .catch(err => showToast('error', err.message))
     }, [])
@@ -53,35 +52,31 @@ const EditProduct = () => {
             description,
             category,
             productType } = data
-        const dataForm = { img: imgProduct, color: JSON.stringify(listColor), size: JSON.stringify(listSize), count, price, description, category, productType, name: nameProduct }
+        const dataForm = { img: imgProduct, img2: (typeof imgProduct == 'string' ? imgProduct : ''), color: JSON.stringify(listColor), size: JSON.stringify(listSize), count, price, description, category, productType, name: nameProduct }
 
         const formData = new FormData()
 
         for (const key of Object.entries(dataForm)) {
             formData.append(key[0], key[1])
         }
-        console.log(imgProduct)
-        // try {
-        //     showToast('loading', 'đang xử lý xin vui lòng đợi!')
-        //     const res = await axios.patch(PRODUCT_URL + productId, formData)
-        //     if (res.status >= 200 && res.status < 300) {
-        //         console.log(res)
-        //         // setImgProduct('')
-        //         // setListColor([])
-        //         // setListSize([])
-        //         // setData(draft => {
-        //         //     draft.nameProduct = '';
-        //         //     draft.price = '';
-        //         //     draft.count = '';
-        //         //     draft.description = '';
-        //         //     draft.category = 'Đồ Nam';
-        //         //     draft.productType = 'Áo khoác';
-        //         // })
-        //         showToast('success', 'Tạo thành công!')
-        //     }
-        // } catch (err) {
-        //     showToast('error', err.message)
-        // }
+
+
+        for (const data of formData.entries()) {
+            console.log(data)
+        }
+
+
+        try {
+            showToast('loading', 'đang xử lý xin vui lòng đợi!')
+            const res = await axios.patch(PRODUCT_URL + productId, formData)
+            console.log(res)
+            if (res.status >= 200 && res.status < 300) {
+                scrollTo({ top: 0, 'behavior': 'smooth' })
+                showToast('success', 'Tạo thành công!')
+            }
+        } catch (err) {
+            showToast('error', err.message)
+        }
 
     }
 
@@ -89,7 +84,7 @@ const EditProduct = () => {
         <div className='px-4'>
             <h2 className='text-center text-[30px]'>Sửa sản phẩm</h2>
             <form encType="multipart/form-data">
-                <InputImgList {...{ imgProduct, setImgProduct, isProductImg, setIsProductImg }} />
+                <InputImgList {...{ imgProduct, setImgProduct }} />
                 <div className="mt-3">
                     <label htmlFor="name">Tên sản phẩm</label>
                     <input type="text" id='name' className='inputForm' value={data.nameProduct}

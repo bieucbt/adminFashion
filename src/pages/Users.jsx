@@ -44,7 +44,7 @@ const Users = () => {
                 <div className='cursor-pointer' onClick={() => handleDeleteUser(item._id)}>xóa</div>
               </div>
             </div>))
-          : <div>chưa có tài khoản nào hoặc đăng có lỗi!</div>
+          : <div>chưa có tài khoản nào hoặc đang có lỗi!</div>
       }
     </div>
   )

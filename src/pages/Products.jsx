@@ -21,13 +21,16 @@ const Products = () => {
   }, [])
 
   const handleDeleteProduct = async (id) => {
-
-    const res = await axios.delete(PRODUCT_URL + id)
-    if (res.status >= 200 && res.status < 300) {
-      setProduct(products.filter(product => product._id != id))
-      showToast('success', 'xoá thành công')
-    } else {
-      showToast('error', 'có lỗi xảy ra, xóa thất bại')
+    try {
+      const res = await axios.delete(PRODUCT_URL + id)
+      if (res.status >= 200 && res.status < 300) {
+        setProduct(products.filter(product => product._id != id))
+        showToast('success', 'xoá thành công')
+      } else {
+        showToast('error', 'có lỗi xảy ra, xóa thất bại')
+      }
+    } catch (err) {
+      showToast('error', err.message)
     }
   }
 
