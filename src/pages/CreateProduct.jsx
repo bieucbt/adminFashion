@@ -53,6 +53,10 @@ const CreateProduct = () => {
           draft.productType = 'Áo khoác';
         })
         showToast('success', 'Tạo thành công!')
+        scrollTo({
+          top: 0,
+          'behavior': 'smooth'
+        })
       }
     } catch (err) {
       showToast('error', err.message)

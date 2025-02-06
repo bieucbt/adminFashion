@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { deleteUserApi, getAllUsersApi } from '../utils/api'
 import { useNavigate } from 'react-router-dom';
 import useToastContext from '../hook/useToastContext';
+import { USER_URL } from '../config/constants';
+import axios from 'axios';
 
 const Users = () => {
   const [userData, setUserData] = useState([])
   const navigate = useNavigate()
   const { showToast } = useToastContext()
+
   useEffect(() => {
-    getAllUsersApi()
+    axios.get(USER_URL)
       .then(users => setUserData(users.data))
   }, [])
 
   function handleDeleteUser(id) {
-    deleteUserApi(id)
-      .then(user => setUserData(prev => {
-        showToast('success', 'Xóa thành công')
-        return prev.filter(item => item._id != user.data._id)
-      }))
-
+    axios.delete(USER_URL + id)
+      .then(user => {
+        console.log(user)
+        setUserData(prev => {
+          showToast('success', 'Xóa thành công')
+          return prev.filter(item => item._id != id)
+        })
+      })
   }
 
   return (
@@ -36,7 +40,7 @@ const Users = () => {
             <div key={i}
               className='grid place-items-center mb-[6px] gap-2'
               style={{ gridTemplateColumns: 'auto repeat(3, 1fr)' }}>
-              <div className='w-[40px] px-1 text-center'>{i}</div>
+              <div className='w-[40px] px-1 text-center'>{i + 1}</div>
               <div>{item.email}</div>
               <div className='w-full text-ellipsis text-wrap overflow-hidden'>{item.password}</div>
               <div className='flex items-center gap-3'>

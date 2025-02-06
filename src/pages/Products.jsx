@@ -49,7 +49,7 @@ const Products = () => {
           products.map((product, i) => (
             <div key={i}
               className='grid grid-cols-6 place-items-center mb-[6px]'>
-              <div>{i}</div>
+              <div>{i + 1}</div>
               <div><img src={CLOUDINARY_URL + product.img} alt="img product" /></div>
               <div>{product.name}</div>
               <div>{product.price}</div>

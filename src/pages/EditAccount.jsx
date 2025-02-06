@@ -32,7 +32,6 @@ const EditAccount = () => {
 
       if (res.status >= 200 && res.status < 300) {
         showToast('success', 'thay đổi thành công')
-        navigate('/users')
       }
     } catch (err) {
       showToast('error', 'Đang bị lỗi không thể sửa được thông tin')
