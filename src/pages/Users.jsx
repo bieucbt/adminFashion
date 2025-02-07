@@ -43,10 +43,13 @@ const Users = () => {
               <div className='w-[40px] px-1 text-center'>{i + 1}</div>
               <div>{item.email}</div>
               <div className='w-full text-ellipsis text-wrap overflow-hidden'>{item.password}</div>
-              <div className='flex items-center gap-3'>
-                <div className='cursor-pointer' onClick={() => navigate('/editAcount', { state: item._id })}>sửa</div>
-                <div className='cursor-pointer' onClick={() => handleDeleteUser(item._id)}>xóa</div>
-              </div>
+              {
+                !item.isAdmin &&
+                <div className='flex items-center gap-3'>
+                  <div className='cursor-pointer' onClick={() => navigate('/editAcount', { state: item._id })}>sửa</div>
+                  <div className='cursor-pointer' onClick={() => handleDeleteUser(item._id)}>xóa</div>
+                </div>
+              }
             </div>))
           : <div>chưa có tài khoản nào hoặc đang có lỗi!</div>
       }

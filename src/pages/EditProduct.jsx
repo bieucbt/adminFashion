@@ -25,6 +25,7 @@ const EditProduct = () => {
     const productId = useLocation().state
 
     useEffect(() => {
+        scrollTo({ top: 0, 'behavior': 'smooth' })
         axios.get(PRODUCT_URL + productId)
             .then(res => {
                 const dataProduct = res.data
