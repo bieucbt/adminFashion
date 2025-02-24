@@ -9,6 +9,7 @@ const InputImgList = ({ imgProduct, setImgProduct }) => {
     <div>
       <label htmlFor="file">
         Tải ảnh
+        <p className='text-red-400'>lưu ý: có 1 vài định dạng ảnh sẽ không khả dụng</p>
         {/* <div className="cursor-pointer">{imgProducts.length > 0 ? <div className="flex items-center flex-wrap">
         {
           imgProducts.map((img, i) => <img key={i} src={URL.createObjectURL(img)} className="w-[100px]" />)
