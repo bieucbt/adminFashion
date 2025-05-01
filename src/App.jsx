@@ -10,6 +10,8 @@ import EditAccount from './pages/EditAccount';
 import ToastPovider from './context/ToastPovider';
 import './App.css'
 import EditProduct from './pages/EditProduct';
+import OrderPage from './pages/OrderPage';
+import UpdateOrder from './pages/updateOrder';
 
 function App() {
 
@@ -29,6 +31,8 @@ function App() {
                 <Route path="/create" element={<CreateProduct />} />
                 <Route path="/editAcount" element={<EditAccount />} />
                 <Route path="/editProduct" element={<EditProduct />} />
+                <Route path="/orderPage" element={<OrderPage />} />
+                <Route path="/editOrder" element={<UpdateOrder />} />
               </Routes>
             </div>
           </div>

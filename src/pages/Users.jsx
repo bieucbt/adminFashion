@@ -5,13 +5,16 @@ import { USER_URL } from '../config/constants';
 import axios from 'axios';
 
 const Users = () => {
-  const [userData, setUserData] = useState([])
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('users')) || [])
   const navigate = useNavigate()
   const { showToast } = useToastContext()
 
   useEffect(() => {
     axios.get(USER_URL)
-      .then(users => setUserData(users.data))
+      .then(res => {
+        localStorage.setItem('users', JSON.stringify(res.data))
+        setUserData(res.data)
+      })
   }, [])
 
   function handleDeleteUser(id) {
@@ -31,7 +34,6 @@ const Users = () => {
         style={{ gridTemplateColumns: 'auto repeat(3, 1fr)' }}>
         <div className='w-[40px] px-1 text-center'>STT</div>
         <div>email</div>
-        <div>mật khẩu</div>
         <div>hành động</div>
       </div>
       {
@@ -42,7 +44,6 @@ const Users = () => {
               style={{ gridTemplateColumns: 'auto repeat(3, 1fr)' }}>
               <div className='w-[40px] px-1 text-center'>{i + 1}</div>
               <div>{item.email}</div>
-              <div className='w-full text-ellipsis text-wrap overflow-hidden'>{item.password}</div>
               {
                 !item.isAdmin &&
                 <div className='flex items-center gap-3'>

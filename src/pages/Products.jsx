@@ -6,14 +6,17 @@ import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
 
-  const [products, setProduct] = useState([])
+  const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')) || [])
   const { showToast } = useToastContext()
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchProduct = () => {
       axios.get(PRODUCT_URL)
-        .then(data => setProduct(data.data))
+        .then(res => {
+          setProducts(res.data)
+          localStorage.setItem('products', JSON.stringify(res.data))
+        })
         .catch(err => console.log(err))
     }
 
@@ -24,7 +27,7 @@ const Products = () => {
     try {
       const res = await axios.delete(PRODUCT_URL + id)
       if (res.status >= 200 && res.status < 300) {
-        setProduct(products.filter(product => product._id != id))
+        setProducts(products.filter(product => product._id != id))
         showToast('success', 'xoá thành công')
       } else {
         showToast('error', 'có lỗi xảy ra, xóa thất bại')
