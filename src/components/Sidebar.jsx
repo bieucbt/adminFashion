@@ -14,6 +14,7 @@ const Sidebar = () => {
         onClick={() => navigate('/users')}>Danh sách người dùng</div>
       <div className='cursor-pointer'
         onClick={() => navigate('/orderPage')}>Danh sách đơn hàng</div>
+      {/* check lỗi không hiển thị danh sách đơn hàng */}
     </aside>
   )
 }
