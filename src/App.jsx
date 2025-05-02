@@ -11,7 +11,6 @@ import ToastPovider from './context/ToastPovider';
 import './App.css'
 import EditProduct from './pages/EditProduct';
 import OrderPage from './pages/OrderPage';
-import UpdateOrder from './pages/updateOrder';
 
 function App() {
 
