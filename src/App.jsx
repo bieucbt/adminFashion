@@ -32,7 +32,6 @@ function App() {
                 <Route path="/editAcount" element={<EditAccount />} />
                 <Route path="/editProduct" element={<EditProduct />} />
                 <Route path="/orderPage" element={<OrderPage />} />
-                <Route path="/editOrder" element={<UpdateOrder />} />
               </Routes>
             </div>
           </div>
